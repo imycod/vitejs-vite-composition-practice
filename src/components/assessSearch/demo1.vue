@@ -2,13 +2,11 @@
 import { reactive, computed } from 'vue';
 
 import useModel from '../../hooks/useSeachAssess/model.js';
-import useAssessCycle from '../../hooks/useSeachAssess/useAssessCycle.js';
-import useQuarter from '../../hooks/useSeachAssess/useQuarter.js';
-const query = reactive({
-  assessCycle: 0,
-  quarter: 0,
-});
-const model = useModel(query);
+
+const {
+  querys: { demo1: query },
+  model,
+} = useModel('demo1');
 </script>
 
 <template>
