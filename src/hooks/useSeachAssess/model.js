@@ -5,18 +5,19 @@ import useQuarterOptions from './useQuarter';
 const { basCycleOptions } = useAssessCycle();
 const { basQuarterOptions } = useQuarterOptions();
 
-export default function useModel(moduleName) {
-  // 注意：每个实例都有自己的query
-  const querys = reactive({
-    demo1: {
+class QuerySource {
+  query = null;
+  constructor() {
+    this.query = reactive({
       assessCycle: 0,
       quarter: 0,
-    },
-    demo2: {
-      assessCycle: 0,
-      quarter: 0,
-    },
-  });
+    });
+  }
+}
+
+export default function useModel() {
+  const querySource = new QuerySource();
+
   const model = reactive([
     {
       type: 'select',
@@ -27,13 +28,13 @@ export default function useModel(moduleName) {
     {
       type: 'select',
       prop: 'quarter',
-      options: basQuarterOptions(querys[moduleName]),
+      options: basQuarterOptions(querySource.query),
       label: '考核时间',
     },
   ]);
 
   return {
-    querys,
+    query: querySource.query,
     model,
   };
 }

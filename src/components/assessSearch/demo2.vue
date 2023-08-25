@@ -2,10 +2,8 @@
 import { reactive, computed } from 'vue';
 
 import useModel from '../../hooks/useSeachAssess/model.js';
-const {
-  querys: { demo2: query },
-  model,
-} = useModel('demo2');
+
+const { query, model } = useModel();
 </script>
 
 <template>
