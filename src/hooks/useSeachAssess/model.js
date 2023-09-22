@@ -5,15 +5,33 @@ import useQuarterOptions from './useQuarter';
 const { basCycleOptions } = useAssessCycle();
 const { basQuarterOptions } = useQuarterOptions();
 
-class QuerySource {
-  query = null;
-  constructor() {
-    this.query = reactive({
+// class QuerySource {
+//   query = null;
+//   constructor() {
+//     this.query = reactive({
+//       assessCycle: 0,
+//       quarter: 0,
+//     });
+//   }
+// }
+
+// sigle instance
+function QuerySource() {
+  return {
+    query: reactive({
       assessCycle: 0,
       quarter: 0,
-    });
-  }
+    }),
+  };
 }
+
+// share public instance
+// const querySource = {
+//   query: reactive({
+//     assessCycle: 0,
+//     quarter: 0,
+//   }),
+// };
 
 export default function useModel() {
   const querySource = new QuerySource();
